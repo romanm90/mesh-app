@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: mesh-app
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/meshdb
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      dialect: PostgreSQL10Dialect
+      ddl-auto: validate
+    show-sql: true
+
+  flyway:
+    enabled: true
+
+server:
+  port: 8088

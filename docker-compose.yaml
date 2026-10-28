@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:17-alpine3.23
+    container_name: shop-postgres
+    environment:
+      POSTGRES_DB: meshdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
