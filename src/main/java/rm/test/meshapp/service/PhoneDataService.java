@@ -6,6 +6,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import rm.test.meshapp.config.CacheConfig;
 import rm.test.meshapp.dto.PhoneRequest;
 import rm.test.meshapp.dto.PhoneResponse;
 import rm.test.meshapp.entity.PhoneData;
@@ -27,8 +28,8 @@ public class PhoneDataService {
 
     @Transactional
     @Caching(evict = {
-            @CacheEvict(cacheNames = "user", key = "#userId"),
-            @CacheEvict(cacheNames = "usersSearch", allEntries = true)
+            @CacheEvict(cacheNames = CacheConfig.USER_CACHE, key = "#userId"),
+            @CacheEvict(cacheNames = CacheConfig.USERS_SEARCH_CACHE, allEntries = true)
     })
     public PhoneResponse add(Long userId, PhoneRequest request) {
         String phone = normalize(request.phone());
@@ -48,8 +49,8 @@ public class PhoneDataService {
 
     @Transactional
     @Caching(evict = {
-            @CacheEvict(cacheNames = "user", key = "#userId"),
-            @CacheEvict(cacheNames = "usersSearch", allEntries = true)
+            @CacheEvict(cacheNames = CacheConfig.USER_CACHE, key = "#userId"),
+            @CacheEvict(cacheNames = CacheConfig.USERS_SEARCH_CACHE, allEntries = true)
     })
     public PhoneResponse update(Long userId, Long phoneId, PhoneRequest request) {
         PhoneData phoneData = requireOwnedPhone(userId, phoneId);
@@ -65,8 +66,8 @@ public class PhoneDataService {
 
     @Transactional
     @Caching(evict = {
-            @CacheEvict(cacheNames = "user", key = "#userId"),
-            @CacheEvict(cacheNames = "usersSearch", allEntries = true)
+            @CacheEvict(cacheNames = CacheConfig.USER_CACHE, key = "#userId"),
+            @CacheEvict(cacheNames = CacheConfig.USERS_SEARCH_CACHE, allEntries = true)
     })
     public void delete(Long userId, Long phoneId) {
         requireOwnedPhone(userId, phoneId);
