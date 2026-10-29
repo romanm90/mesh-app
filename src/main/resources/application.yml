@@ -9,12 +9,40 @@ spring:
 
   jpa:
     hibernate:
-      dialect: PostgreSQL10Dialect
       ddl-auto: validate
+    open-in-view: false
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
   flyway:
     enabled: true
 
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  cache:
+    type: redis
+
 server:
   port: 8088
+
+app:
+  jwt:
+    secret: "mesh-app-dev-jwt-secret-key-change-me-32b+"
+    ttl-ms: 3600000
+
+logging:
+  level:
+    rm.test.meshapp: INFO
+    org.springframework.cache: INFO
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+  show-actuator: false

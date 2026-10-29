@@ -1,0 +1,28 @@
+spring:
+  cache:
+    type: simple
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.data.redis.autoconfigure.DataRedisAutoConfiguration
+      - org.springframework.boot.data.redis.autoconfigure.DataRedisRepositoriesAutoConfiguration
+      - org.springframework.boot.data.redis.autoconfigure.health.DataRedisHealthContributorAutoConfiguration
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+
+app:
+  jwt:
+    secret: "mesh-app-test-jwt-secret-key-change-me-32b+"
+    ttl-ms: 3600000
+  enrichment-scheduler:
+    enabled: false
+
+logging:
+  level:
+    rm.test.meshapp: INFO

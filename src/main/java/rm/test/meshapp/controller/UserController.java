@@ -29,6 +29,8 @@ public class UserController {
             @RequestParam(required = false) String email,
             @PageableDefault(size = 20) Pageable pageable
     ) {
-        return userService.search(dateOfBirth, phone, name, email, pageable);
+        return userService
+                .searchPage(dateOfBirth, phone, name, email, pageable.getPageNumber(), pageable.getPageSize())
+                .toPage();
     }
 }
