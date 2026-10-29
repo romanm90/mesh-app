@@ -2,10 +2,11 @@ spring:
   cache:
     type: simple
 
-  datasource:
-    url: jdbc:postgresql://localhost:5432/meshdb
-    username: postgres
-    password: postgres
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.data.redis.autoconfigure.DataRedisAutoConfiguration
+      - org.springframework.boot.data.redis.autoconfigure.DataRedisRepositoriesAutoConfiguration
+      - org.springframework.boot.data.redis.autoconfigure.health.DataRedisHealthContributorAutoConfiguration
 
   jpa:
     hibernate:
@@ -14,11 +15,6 @@ spring:
 
   flyway:
     enabled: true
-
-  data:
-    redis:
-      host: localhost
-      port: 6379
 
 app:
   jwt:
