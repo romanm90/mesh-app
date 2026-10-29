@@ -1,0 +1,30 @@
+spring:
+  cache:
+    type: simple
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/meshdb
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+app:
+  jwt:
+    secret: "mesh-app-test-jwt-secret-key-change-me-32b+"
+    ttl-ms: 3600000
+
+logging:
+  level:
+    rm.test.meshapp: INFO
